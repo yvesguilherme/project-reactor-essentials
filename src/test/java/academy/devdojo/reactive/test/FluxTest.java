@@ -150,8 +150,23 @@ public class FluxTest {
                 .verifyComplete();
     }
 
+    @Test
+    public void fluxSubscriberPrettyBackpressure() {
+        Flux<Integer> fluxInteger = Flux.range(1, 10)
+                .log()
+                .limitRate(3);
+
+        fluxInteger.subscribe(i -> log.info("Number {}", i));
+
+        log.info("-------------------------------------------");
+
+        StepVerifier.create(fluxInteger)
+                .expectNext(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                .verifyComplete();
+    }
+
     /**
-     *  O interval executa em uma Thread diferente da Main.
+     * O interval executa em uma Thread diferente da Main.
      */
     @Test
     public void fluxSubscriberIntervalOne() throws Exception {
@@ -165,7 +180,7 @@ public class FluxTest {
     }
 
     /**
-     *  O interval executa em uma Thread diferente da Main.
+     * O interval executa em uma Thread diferente da Main.
      */
     @Test
     public void fluxSubscriberIntervalTwo() {
