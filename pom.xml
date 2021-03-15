@@ -10,7 +10,7 @@
 
     <properties>
         <reactor-core.version>3.3.11.RELEASE</reactor-core.version>
-        <reactor-test.version>3.4.3</reactor-test.version>
+        <reactor-test.version>3.3.11.RELEASE</reactor-test.version>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
